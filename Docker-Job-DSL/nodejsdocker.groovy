@@ -1,4 +1,4 @@
-job('NodeJS example') {
+job('NodeJS API Containerised') {
     scm {
         git('https://github.com/VarunDhanak/node-api.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('Varun Dhanak')
