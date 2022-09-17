@@ -18,7 +18,7 @@ app.get('/', (req,res,next) =>{
     res.send('Hello from Node Server')
 })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3004;
 
 app.listen(PORT, ()=>{
     console.log(`Server listening on port ${PORT}`);
