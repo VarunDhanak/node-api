@@ -1,0 +1,18 @@
+node{
+    def commit_id
+    statge('Perparation'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"                        
+        commit_id = readFile('.git/commit-id').trim()
+    }
+    stage('Test'){
+        nodejs(nodeJSInstallationName: 'nodejs') {
+        sh 'npm install --only=dev'
+        sh 'npm test'
+     }
+    }
+    stage('docker build/push'){
+        docker.withRegistry('https://index.docker.io/v2/', 'dockerhub') {
+        def app = docker.build("varrundhanak/docker-nodejs-demo:${commit_id}", '.').push()
+    }
+}
